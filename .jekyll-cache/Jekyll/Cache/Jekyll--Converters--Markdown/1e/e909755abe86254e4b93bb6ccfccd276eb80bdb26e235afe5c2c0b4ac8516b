@@ -1,0 +1,64 @@
+I"<<p>Last semester as a part of CSE 610 class, I worked on the Soccernet-Player Re-identification challenge. 
+Below are the notes from the work done in this project.</p>
+
+<p><strong>What’s the task of Person Re-identification?</strong> <br /> The task of Person Re-identification can be formulated differently leading to multiple definitions. I will start with one which is quite 
+straightforward, and introduce others later. As name suggests it is all about “Re” identifying the person. More precisely, person Re-identification is a task of identifying the same person in two time and/or view 
+disjoint frames taken from multiple cameras.</p>
+
+<p><br />
+Player Re-identification is nothing but person Re-identification done for players in particular sports.</p>
+
+<p>Mostly all publicly available person/player re-identification datasets have cropped images of players from image frames 
+in the video. These videos can be from different geographic locations and timestamps, captured from multiple cameras with 
+dissimilar views/orientations. Although timestamps are different, difference is smaller (in minutes or less). Multiple camera views 
+pose a challenge because the views are disjoint, temporal distance between images is not constant, lighting conditions 
+and backgrounds are different.</p>
+
+<p>Given such dataset, you will find some standard definitions in literature which I will introduce here. <br /></p>
+<ul>
+  <li>Gallery : Nothing fancy, it simply is a set of all frames of multiple players/person in the given dataset (likely have different views/timestamps)<br /></li>
+  <li>Anchor Image : Image of the target player to re-identified.<br /></li>
+  <li>Action frame : A frame from which Anchor image is captured. In case of Soccernet Dataset, action signifies some interesting event in the Soccer e.g. a goal. All the frames in the 
+video for that action are grouped together and used for evaluation as frames are temporally closer.<br /></li>
+  <li>Reference frame: All other frames (can be from same or different action) in the dataset except the action 
+frame.<br /></li>
+  <li>Positive Image: Image of the same identity as that in the Anchor image.<br /></li>
+  <li>Negative Image: Image which doesn’t have the same identity as that in the Anchor image.<br /></li>
+</ul>
+
+<p>An anchor image is taken from action frames; positive images and negative images are taken from reference frames. 
+You are given an anchor image your model needs to find the Positive Image from the Reference Images. With above description
+you could also formulate the problem of re-identification in terms of image retrieval based on metric learning.</p>
+
+<p>In the below image <img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/soccernet-v3-reid-illustration.png" alt="soccernet-v3-reid-illustration" title="Soccernet Re-identification Dataset Illustration" />
+<em>&lt;p style="text-align: center;"&gt; and &lt;/p&gt;</em></p>
+
+<p><strong>State-of-the-Art methods of Re-identification:</strong><br />
+Current methods of player re-identification mainly focus on two ways - one is to get high quality discriminative features 
+and other is to define the distance metric which can be used as a loss for learning task effectively. I will talk here 
+about the prior as it aligned with the requirements of the class. While learning the features from the images, it is important to 
+work on relatively similar scale of the images. In more open-world settings, distance of objects from the camera is different, 
+and so ae there sizes in the image; although to some extent it is taken care by cropping the image and resizing the images to same size, 
+it is important to construct features from different scales in an image. One of such methods is from the authors of OsNET<a class="citation" href="#zhou2019osnet">(Zhou et al., 2019)</a>.<br />
+OsNET was also SOTA method in SoccerNet baselines which gave the best results.</p>
+
+<p>OMNISCALE:</p>
+
+<p>TRANSREID:
+One of the other methods which although, doesn’t directly encode multi-scale features it handles the multiple scales by attention mechanism.
+It is introduced by authors of TransReid[2]. I have seen TransReid perform quite well in the task of player re-identification, which is based 
+on the famous Vision Transformers[3]. It should come as no surprise as Transformer based models are performing better and better stacking up hundreds
+of submissions in the top conferences these days.</p>
+
+<p><strong>Motivation</strong>
+As compared to the task of person re-identification the task of player re-identification is significantly challenging. Many methods base their model on
+appearance as discriminative feature to learn the metrics, but in case of players appearance of almost all the players is similar - for example in a game of
+football the general physique of all the players would be on average similar. Almost all players from same team will wear similar jersey, exception being 
+goal-keepers, but there is only one goalkeeper in a team. Now, you might be able to identify player based on their jersey numbers but remember we have to 
+re-identify players from different camera views, and it is more likely than not the jersey numbers are either not visible in the given view or too obscure to 
+be even be detected let alone be identified. <i mage="" of="" the="" player="" with="" quite="" obscure="" jersey="" number=""> Therefore, appearance features alone are not sufficient.</i></p>
+
+<p>I described before that</p>
+
+<ol class="bibliography"><li><span id="zhou2019osnet">Zhou, K., Yang, Y., Cavallaro, A., &amp; Xiang, T. (2019). Omni-Scale Feature Learning for Person Re-Identification. <i>ICCV</i>.</span></li></ol>
+:ET
