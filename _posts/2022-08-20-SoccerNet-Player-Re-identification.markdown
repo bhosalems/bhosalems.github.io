@@ -1,0 +1,334 @@
+---
+layout: post
+title:  "SoccerNet Player Re-identification"
+date:   2022-08-20 14:45:00 +0530
+categories: jekyll update
+comments: true
+mathjax: true
+---
+{% include mathjax.html %}
+
+Last semester as a part of CSE 610 class, I worked on the Soccernet-Player Re-identification challenge. 
+Below are the notes from the work done in this project.
+
+#### **What's the task of Person Re-identification?**
+The task of Person Re-identification can be formulated differently leading to multiple definitions. I will start with one which is quite straightforward, and introduce others later. 
+As name suggests it is all about "Re" identifying the person. More precisely, person Re-identification is a task of 
+identifying the same person in two time and/or view disjoint frames taken from multiple cameras. <br/>
+
+Below is an image from person re-identification dataset called Market-1501{% cite zheng2015scalable %}. It contains in 
+total 8 sequence of images(3 sequences in first two rows and two sequences in the last row, Note, here sequence doesn't 
+necessarily mean any order between images, it just is a collection), each image in a sequence is of the same person/identity 
+taken from multiple views captured by different cameras in Market. Task of person re-identification is to build the 
+correspondence between images in the same sequence. Also, as can be seen in the last row, there can also be negative 
+examples i.e. there is either no sufficient information to identify the person or there's no more images to retrieve 
+(only single reference image.) Based on requirements of a task at hand, output in such cases could be different, for 
+example "none" if similarity score/ other metric is below some reasonable threshold value.<br/>
+
+![Market-1501](/assets/imgs/2022-07-09-Excerpt-on-Reidentification/Market-1501.png "Market 1501 dataset")
+*<center>Market 1501 Dataset {% cite zheng2015scalable %}.</center>*
+<br/>
+Having gone over what person re-identification is, Player re-identification is self-explanatory : person Re-identification done for players in particular sports. 
+
+Mostly all publicly available person/player re-identification datasets have cropped images of players from image frames 
+in the video. These videos can be from different geographic locations and timestamps, captured from multiple cameras with 
+dissimilar views/orientations. Although timestamps are different, difference is smaller (in minutes or less). Multiple camera views 
+pose a challenge because the views are disjoint, temporal distance between images is not constant, lighting conditions 
+and backgrounds are different.
+
+Given such dataset, you will find some standard definitions in literature which I will introduce here. <br/>
+- Anchor/Query Image : Image of the target player to re-identified.<br/>
+- Action frame : A frame from which Anchor image is captured. In case of Soccernet Dataset, action signifies some interesting event in the Soccer e.g. a goal. All the frames in the 
+video for that action are grouped together and used for evaluation as frames are temporally closer.<br/>
+- Reference frame: All other frames (can be from same or different action) in the dataset except the action 
+frame.<br/>
+- Gallery set: Nothing fancy, it simply is a set of all reference frames / bounding boxes(likely have different views/timestamps).<br/>
+- Positive Image: Image of the same identity as that in the Anchor image.<br/>
+- Negative Image: Image which doesn't have the same identity as that in the Anchor image.<br/>
+
+Below is the illustration of Soccernet-v3 dataset,<br/>
+
+![soccernet-v3-reid-illustration](/assets/imgs/2022-07-09-Excerpt-on-Reidentification/soccernet-v3-reid-illustration.png 
+"Soccernet Re-identification Dataset Illustration")
+*<center>Soccernet Re-identification Dataset Illustration</center>* <br/>
+Let's say above image is divided into four parts by two dotted lines. Top left corner is an action frame, most likely a goal. 
+After that, in top right you have reference frames named as replay frames; notice the small temporal distance 
+between action and replay frames. In the lower-left part of the image, 18 bounding boxes are captured, each will be used as 
+(possible) query image, and all the 37 bounding boxes captured from the reference images will form a gallery, shown in the 
+lower right part. In some cases, such as the bottom-most image of referee in the queries doesn't have any matching image 
+in the gallery set, then it will be moved to gallery set to create a distraction. Having taken a look at some images
+in the dataset, take a minute to think about the challenges I mentioned in the dataset such as difference in background, 
+resolution and size. 
+
+An anchor image is taken from action frames; positive images and negative images are taken from reference frames/gallery set. 
+You are given an anchor image, your model needs to find the Positive Image from the Reference Images. With above description
+you could also formulate the problem of re-identification in terms of image retrieval based on metric learning.
+
+#### **State-of-the-Art methods of Re-identification**
+Current methods of player re-identification mainly focus on two ways - one is to get high quality discriminative features 
+and other is to define the distance metric which can be used as a loss for learning task effectively. I will talk briefly 
+about the prior as it aligned with the requirements of the class. While learning the features from the images, it is 
+important to work on relatively similar scale of the images. In more open-world settings, distance of objects from the 
+camera is different, and so ae there sizes in the image; although to some extent it is taken care by cropping the image 
+and resizing the images to same size, it is important to construct features from different scales in an image. One of 
+such methods is from the authors of OSNET{% cite zhou2019osnet %}.OsNET was also SOTA method in SoccerNet baselines 
+which gave the best results. One of the other methods that we reviewed was recent addition to SOTAs, a transformer based
+reidnetification model - TransReid.
+
+**1. Omni-Scale Feature Learning for Person Re-Identification** {% cite zhou2019osnet %}<br/>
+Authors of this paper argue that to match the people, discriminative features should be small local features (e.g. shoes, 
+purse etc.) and relatively larger global features (e.g. whole body appearance) are equally important. Therefore, such discriminative
+features should be <em>omniscale</em>, defined as the combination of variable homogeneous scales and heterogeneous scales, 
+each of which is composed of a mixture of multiple scales. 
+
+Authors propose a novel CNN architecture OSNET. The main idea is to have multiple CNN streams with different receptive fileds 
+so that the multi-scale features can be learnt. At last, resulting multiscale features maps from each stream are fused by
+weighted aggregation gate (AG). The AG is a mini-network sharing parameters across all streams. With the trainable AG, 
+the generated channel-wise weights become input-dependent, hence the dynamic scale fusion. There are some more ideas adapted
+in this paper such as [depth-wise convolutions](http://stanford.edu/class/ee367/Winter2019/bergman_report.pdf) to make 
+the module light-weight. For more detailed understanding reader is advised to review OSNET paper {% cite zhou2019osnet %}.
+
+<html>
+<p style="text-align:center;">
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/osnet-arch.png">
+</p>
+</html>
+
+*<center>OSNET bottleneck block</center>* <br/>
+
+**2. TransReid: Transformer-based Object Re-Identification** {% cite https://doi.org/10.48550/arxiv.2102.04378 %}<br/>
+One of the other methods which although, doesn't directly encode multiscale features it does address main problems with CNN based 
+Re-ID methods. I have seen TransReid perform quite well in the task of player re-identification, which should come with no 
+surprise as Transformer based models are performing better and better stacking up hundreds of submissions in the top 
+conferences these days.
+
+There are two main problems with the traditional CNN based approaches of Re-identification - 1. CNN based methods focus on
+small discriminative features due to a Gaussian distribution of effective receptive fields. 2. Down-sampling operators
+of CNN reduce the spatial dimension of the feature-map (as you would also see that this was one of the motivations for us to use 
+Layer-wise similarity discussed in the later section).
+
+Authors of TranReid propose to address this issues -<br/>
+Use of attention captures long range dependencies as complete global information is available at each layer despite its 
+depth. Without down-sampling operators transformers can keep more detailed information. To further add robust features authors
+introduce two modules -
+1. Jigsaw patches module : As with vision transformer {% cite https://doi.org/10.48550/arxiv.2010.11929 %} the image is 
+split into fixed sized patches and attention based mechanism is used to learn the features. This module attempts to 
+rearrange the patch embeddings via shift and shuffle operations and regroup them for further feature learning. This enables 
+robustness in the learned features and also expands on long-range dependencies.
+2. Side information embedding : In many of the re-identification datasets we have non-visual information which can not 
+be processed by purely CNN based model. Therefore, there is no way of address data bias brought by cameras or viewpoints. This
+module, similar to position encoding in vision transformer, uses learnable 1D embeddings for side information suh as camera and
+view metadata.
+
+![transreid-arch](/assets/imgs/2022-07-09-Excerpt-on-Reidentification/trans-reid-arch.png "TrandReid architecture")
+*<center>TransReid architecture</center>* <br/>
+
+For more detailed treatment of TransReid author is advised to review TransReid paper {% cite https://doi.org/10.48550/arxiv.2102.04378 %}
+
+#### **Appearance and Part as descriminative features**
+**Motivation:**<br/>
+As compared to the task of person re-identification, the task of player re-identification is significantly challenging. Many methods base their model on
+appearance as discriminative feature to learn the metrics, but in case of players, appearance of almost all is similar - for example in a game of
+football the general physique of all the players would be on average similar. Almost all players from same team will wear similar jersey, exception being 
+goal-keepers, but there is only one goalkeeper in a team. Now, you might be able to identify player based on their jersey numbers but remember we have to 
+re-identify players from different camera views, and it is more likely than not that the jersey numbers are either not visible in the given view or too obscure to 
+even be detected let alone be identified as can be seen below. 
+<html>
+<p style="text-align:center;">
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/obscure_imgs.png" width=100 height=200>
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/obscure_imgs1.png" width=100 height=200>
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/obscure_imgs2.png" width=100 height=200>
+</p>
+</html>
+*<center>Soccernet-v3 images with obscure Jersey numbers </center>* <br/>
+Therefore, appearance features alone are not sufficient. It is also evident from the difference in the performance of the SOTA 
+methods such as OSNET on person re-identification vs player re-identification.<br/><br/>
+
+Dataset | mAP (%) | Rank-1 (%)
+--- | -- | ---
+Person re-identification (Market1501) | 81 | 93.6
+Player re-identification (SoccerNet-v3) | 61.6 | 51.2
+
+*<center>Performance of SOTA OSNET on Person- vs Player re-identification (mean average precision and Rank-1 accuracy){% cite zhou2019osnet %}. </center>* 
+
+One of the main difference we identified in traditional person re-identification datasets and soccernet dataset is that 
+temporal distance between anchor image and reference images in case of player re-identification datasets is much smaller
+as compared to person re-identification datasets. Which means a player in anchor image and the same player in (positive) reference images 
+is likely to have similar body posture. Also, in almost every sport, based on the role of a player in overall game, there 
+are distinct moves that they do at a given time. Posture of players therefore, could be used as additional discriminative 
+feature to guide the task of metric learning. This was one of the main ideas that we implemented in the project. 
+
+**Methodology:**<br/>
+We need to extract both posture features and appearance features from the input image; We use two-stream model where one 
+stream is called as appearance extractor which works on extracting the appearance features from the images, and second stream
+called as part/pose extractor works on extracting the pose related features from the images. We use RESNET-50 as appearance extractor 
+and sub-model of openpose as pose-extractor. At the end we need to combine both the appearance and pose features to calculate 
+the final loss. We use (compact) bi-linear pooling to pool the features from both the streams. Our choice of pose extractor and pooling
+has been adapted from Part-aligned bilinear pooling for re-identification paper{% cite Suh_2018_ECCV %}.
+
+Below image shows the two-stream extractor -<br/>
+
+![Two_stream_model](/assets/imgs/2022-07-09-Excerpt-on-Reidentification/model_arch.png "Two stream extractor")
+*<center>Two stream (appearance and pose) extractor model architecture. </center>* 
+
+Note that we use two losses, first is Triplet loss as a similarity loss which will be explained in detail in a later section.
+Another is an identity loss, this is nothing but a traditional cross-entropy loss used in classification tasks. It is formally
+given as,
+
+$$
+L = \frac{1}{m} \sum_{i=1}^m y_i \dot{} \log{\hat {y}_i}
+$$
+
+
+
+**OpenPose:**<br/>
+Let me briefly describe main concepts in OpenPose and the sub-model that we use in out work. 
+OpenPose{% cite DBLP:journals/corr/abs-1812-08008 %} is the first open-source realtime system for multi-person 
+2D pose detection, including body, foot, hand, and facial keypoints (total 135 keypoints). 
+
+<html>
+<p style="text-align:center;">
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/pose_face_hands.gif">
+</p>
+<p style="text-align:center;"><em>Authors of OpenPose: Ginés Hidalgo (left) and Hanbyul Joo (right) in front of the CMU 
+Panoptic Studio.<a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose"> image source</a></em></p>
+</html>
+
+There are mainly two approaches in multi-person 2D human pose detection - <br/>1. Top-down approach 2. Bottom-up approach. 
+In top-down approach, a single person is detected first, and then the pose is estimated for every such detection. 
+Whereas, in bottom-up approach, local features are detected and associated with each other to get the global 
+context/information about complete pose. OpenPose is based off Bottom-up approach. Figure below visualizes the complete 
+pipeline of the OpenPose.
+
+<html>
+<p style="text-align:center;">
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/Openpose_pipeline.png">
+</p>
+</html>
+
+*<center>OpenPose pipeline {% cite DBLP:journals/corr/abs-1812-08008 %}</center>* 
+
+OpenPose takes in 2D color image of size $H \times W$ as input (Fig. a) and produces anatomical key points on each person in the image 
+as output (Fig. e). First, feed-forward network predicts set of confidence maps $S$ of body parts (Fig. b) and set of 2D vector fields
+$L$ called as part affinity fields (PAF), which encode degree of association between body parts (Fig. c). The set $S=(S_1, S_2, ..., S_J)$
+has $J$ confidence maps, one per part, where $S_j \in \mathbb{R}^{w \times h}$, $j \in \{1 . . . J\}$. The set $L=(L_1,L_2, ...,L_C )$ has $C$
+vector fields one per limb (including face, although technically it's not a limb) where $L_c \in \mathbb{R}^{w \times h \times 2}$, $c \in \{1, ..C\}$.
+Once all the PAFs and confidence maps are identified, bipartite matching does the association and the result is 2D key-points 
+for all people in the image (Fig. d). Note that each image location in L encodes a 2D vector as shown in the below figure.
+
+<html>
+<p style="text-align:center;">
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/PAFs.png">
+</p>
+</html>
+
+*<center>(left) Part Affinity Fields (PAFs) corresponding to the limb connecting right elbow and wrist. 
+The color encodes orientation. (right) A 2D vector in each pixel of every PAF encodes the position and orientation of 
+the limbs. {% cite DBLP:journals/corr/abs-1812-08008 %}</center>* 
+
+As stated earlier, we only need sub-model of the OpenPose, particularly, the part until it calculates the final part confidence 
+maps which we use for bi-pooling with appearance features. Multi-stage architecture of OpenPose is given in the 
+below figure, where first stages predict PAFs and later stages predict the part confidence maps. 
+
+<html>
+<p style="text-align:center;">
+<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/OpenPose_arch.png">
+</p>
+</html>
+
+*<center> Multistage OpenPose Architecture</center>*
+
+First, image is fed into pretrained
+VGG-19, which gives the feature maps $F$ that is input to the first stage and outputs the first PAF. In each subsequent 
+stage, the predicted PAF from the previous stage and the original image feature map $F$ are concatenated and used to 
+produce the refined predictions. Formally first PAF $L^1$ is calculated as,
+
+$$
+L^1 = \phi^1(F)
+$$
+
+Subsequent PAFs are calculated as,
+
+$$
+L^t = \phi^t(F, L^{t-1}), \forall 2\le t \le T_p
+$$
+
+where, $\phi^t$ refers to CNNs inference at stage $t$. After total of $T_p$ PAF stages, last PAF is given as input to next 
+stage for estimating part confidence map. First stage only takes $L^{T_p}$ and $F$ as inputs, i.e.
+
+$$
+S^{T_p} = \rho^t(F, L^{T_p}), \forall t=T_p
+$$
+
+whereas subsequent stages take $L^{T_p}$, $F$ and $S^{T-1}$ as inputs, i.e.
+
+$$
+S^{t} = \rho^t(F, L^{T_p}, S^{t-1}), \forall T_p \lt t \le T_p + T_c  
+$$
+
+where $T_c$ is number of confidence map estimation stages and $\rho^t$ is CNNs inference at stage $t$ which estimates part
+confidence map. We initialize the pose-extractor with OpenPose pretrained on COCO dataset. Note that we do not need 
+ground-truth pose estimations of SoccerNet-v3 because we only optimize the re-identification loss.  
+
+We trained the model for 50 epochs, with 32 batch size and 10% percentage (of unique person IDs) of SoccerNet-V3 data. As can be seen
+in the below table we were able to surpass the OSNET performance and other baselines. Adding Layer-wise similarity (described in later section)
+and adding channel and/or spatial attention could further increase the performance.
+
+Model | mAP (%) | Rank-1 (%)
+--- | -- | ---
+OSNET | 61.6 | 51.2
+inceptionv4 | 46.7 | 32
+RESNET50mid | 46.5 | 31.7
+RESNET50 | 46.7 | 32.8
+Ours | **63.7** | **52.9**
+
+*<center>Results (mean average precision and Rank-1 accuracy) on 10% SoccerNet-v3 data with batch size 32.</center>*<br/>
+
+#### **Layer-wise similarity**
+Before diving into the idea of layer-wise similarity, let me talk little about the metric learning and similarity loss first. Metric learning is 
+a task of machine learning in which the loss to be minimized is a distance between data points. Similarity loss in this context
+is any type of loss which measures the similarity between images (anchor and any other images). Triplet loss is one of the
+most frequently used metric learning losses in the re-identification. It is formally defined as,
+
+<p>
+$$
+L = max(d(a, p) - d(a, n) + \delta, 0)
+$$
+where \(d\) is any distance metric such as eucledian or manhatten distance. \(a\) is an anchor image, \(p\) is a positive image,
+\(n\) is a negative image. \(\delta\) is a margin. Minimizing the triplet loss in a training has a effect of pushing away 
+negative samples and bringing the positive samples closer simultaneously, as illustrated in the below image.
+</p>
+
+![Triplet loss](/assets/imgs/2022-07-09-Excerpt-on-Reidentification/triplet_loss_analogy.png "Triplet loss visualization")
+*<center>Triplet loss in training {% cite facenet %}.</center>*<br/>
+RESNETs have been champions in almost all computer vision tasks from much of their inception. Unsurprisingly, RSENET was also 
+implemented in official [soccer-net reidentification developement kit](https://github.com/SoccerNet/sn-reid). Although RESNET's 
+performance was no way near the state-of-the-art methods their wide use steered us to use it as a backbone model to build upon.
+For the reasons stated earlier it was desired that we look at what features in the image RESNET was focusing on. Below is
+activation map of some of the middle layers of the RESNET.![Activation map of RSENET layers](/assets/imgs/2022-07-09-Excerpt-on-Reidentification/featuremap.png "activation map of RESNET on Soccernetv3")
+*<center>Activation map of RESNET on Soccernet (top left to bottom right : Layer 1 to 6).</center>*<br/>
+In every part out of 6 parts of the activation map image, there are total of three smaller images. First is a bounding box image
+which is a input to the respective RESNET layer, second is output (activation map) of the respective RESNET layer and last
+is superimposition of activation map on the input to highlight the feature each layer is focusing on. As can be seen, the output/last 
+layer of RESNET was focusing on small spatial features such as shoes in this case, although features such as jersey number were
+detected in earlier layers. This is one of the drawbacks of CNN based reid models where pooling and strided convolutions reduce the
+size of output feature maps. Therefore, the idea was to use detected features at every layer in the model to calculate the similarity 
+loss. Doing so would steer model to recognize image as a positive image if not only final feature-maps but also feature-maps at 
+middle layers of the model are largely similar (and vice-versa) to respective feature-maps of the anchor image. 
+
+Below image illustrates the design of the layer wise similarity in the model,
+
+![Layer wise similarity](/assets/imgs/2022-07-09-Excerpt-on-Reidentification/layerwise_similarity.png "layer-wise similarity")
+*<center>Layer-wise similarity</center>*<br/>
+
+We add FC layers at the end of the RESNET layers to be taken for calculating the layer-wise similarity. We calculate the similarity 
+loss at the output of the FC layers. The total loss is addition of constituent losses at each layer. The number of FC 
+layers and which layers of RESNET to use is chosen based on the validation. Results on the 10% Soccernet data with 
+batch size of 32 with RESNET as backbone show 3.2% improvement in Rank-1 accuracy and 3.7% increase in improvement in mAP.
+
+Model | mAP (%) | Rank-1 (%)
+--- | -- | ---
+Resnet Baseline| 46.7 | 32.8
+Layerwise similarity | **50.4** | **36.2**
+
+{% bibliography --cited %}
