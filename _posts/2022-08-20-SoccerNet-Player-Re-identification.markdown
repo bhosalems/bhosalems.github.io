@@ -347,11 +347,16 @@ View-Invariant Probabilistic Embedding for Human Pose {% cite DBLP:journals/corr
 embedding can be effectively utilized with SIE module of TransReid.
 
 I am grateful to the support of [Dr. David Doermann](https://cse.buffalo.edu/~doermann/CV.html) and for providing 
-resources required for this project. This project-work was done with equal contribution from (Abhishek Kumar)[https://www.linkedin.com/in/akumar58/].
+resources required for this project. This project-work was done with equal contributions from [Mahesh Bhosale](https://www.linkedin.com/in/maheshsbhosale/) and 
+[Abhishek Kumar](https://www.linkedin.com/in/akumar58/).
 
-Resources:
-[SoccerNet challenge page](https://www.soccer-net.org/)
-[SoccerNet development kit](https://github.com/SoccerNet/sn-reid)
-[Our Github Repo](https://github.com/abhinine4/Soccerplayer_Reidentification)
-[Our report](https://github.com/abhinine4/Soccerplayer_Reidentification/blob/main/images/soccer_player_reid_report.pdf)
+**Resources**:<br/>
+[SoccerNet challenge page](https://www.soccer-net.org/)<br/>
+[SoccerNet development kit](https://github.com/SoccerNet/sn-reid)<br/>
+[Our Github Repo](https://github.com/abhinine4/Soccerplayer_Reidentification)<br/>
+[Our report](https://github.com/abhinine4/Soccerplayer_Reidentification/blob/main/images/soccer_player_reid_report.pdf)<br/>
+
+**References**<br/>
 {% bibliography --cited %}
+
+{% include disqus.html %}
