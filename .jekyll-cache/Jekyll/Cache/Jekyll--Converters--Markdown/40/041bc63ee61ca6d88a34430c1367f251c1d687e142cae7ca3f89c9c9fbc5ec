@@ -1,53 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>SoccerNet Player Re-identification | msb’s notes</title>
-<meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="SoccerNet Player Re-identification" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Learn and let learn." />
-<meta property="og:description" content="Learn and let learn." />
-<link rel="canonical" href="lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html" />
-<meta property="og:url" content="lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html" />
-<meta property="og:site_name" content="msb’s notes" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-08-20T05:15:00-04:00" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="SoccerNet Player Re-identification" />
-<script type="application/ld+json">
-{"url":"lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html"},"description":"Learn and let learn.","headline":"SoccerNet Player Re-identification","dateModified":"2022-08-20T05:15:00-04:00","datePublished":"2022-08-20T05:15:00-04:00","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="lsbmsb.github.io/feed.xml" title="msb&apos;s notes" /></head>
-<body><header class="site-header" role="banner">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/">msb&#39;s notes</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">SoccerNet Player Re-identification</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="2022-08-20T05:15:00-04:00" itemprop="datePublished">Aug 20, 2022
-      </time></p>
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    
+I"�m
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -402,16 +353,13 @@ negative samples and bringing the positive samples closer simultaneously, as ill
 <p><img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/triplet_loss_analogy.png" alt="Triplet loss" title="Triplet loss visualization" />
 <em><center>Triplet loss in training <a class="citation" href="#facenet">(Schroff et al., 2015)</a>.</center></em><br />
 RESNETs have been champions in almost all computer vision tasks from much of their inception. Unsurprisingly, RESNET was also 
-implemented in official <a href="https://github.com/SoccerNet/sn-reid">SoccerNet reidentification developement kit</a>. Although, RESNET’s 
+implemented in official <a href="https://github.com/SoccerNet/sn-reid">soccer-net reidentification developement kit</a>. Although RESNET’s 
 performance was no way near the state-of-the-art methods their wide use steered us to use it as a backbone model to build upon.
 For the reasons stated earlier it was desired that we look at what features in the image RESNET was focusing on. Below is
-activation map of some of the middle layers of the RESNET.</p>
-
-<p><img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/featuremap.png" alt="Activation map of RSENET layers" title="activation map of RESNET on Soccernetv3" />
-<em><center>Activation map of RESNET on Soccernet (top left to bottom right : Layer 1 to 6).</center></em></p>
-
-<p>In every part out of 6 parts of the activation map image above, there are total of three smaller images. First is a bounding box image
-which is an input to the respective RESNET layer, second is output (activation map) of the respective RESNET layer and the last
+activation map of some of the middle layers of the RESNET.<img src="/assets/imgs/2022-07-09-Excerpt-on-Reidentification/featuremap.png" alt="Activation map of RSENET layers" title="activation map of RESNET on Soccernetv3" />
+<em><center>Activation map of RESNET on Soccernet (top left to bottom right : Layer 1 to 6).</center></em><br />
+In every part out of 6 parts of the activation map image, there are total of three smaller images. First is a bounding box image
+which is a input to the respective RESNET layer, second is output (activation map) of the respective RESNET layer and last
 is superimposition of activation map on the input to highlight the feature each layer is focusing on. As can be seen, the output/last 
 layer of RESNET was focusing on small spatial features such as shoes in this case, although features such as jersey number were
 detected in earlier layers. This is one of the drawbacks of CNN based reid models where pooling and strided convolutions reduce the
@@ -427,7 +375,7 @@ middle layers of the model are largely similar (and vice-versa) to respective fe
 <p>We add FC layers at the end of the RESNET layers to be taken for calculating the layer-wise similarity. We calculate the similarity 
 loss at the output of the FC layers. The total loss is addition of constituent losses at each layer. The number of FC 
 layers and which layers of RESNET to use is chosen based on the validation. Results on the 10% Soccernet data with 
-batch size of 32 with RESNET as backbone show 3.2% improvement in Rank-1 accuracy and 3.7% increase in mAP.</p>
+batch size of 32 with RESNET as backbone show 3.2% improvement in Rank-1 accuracy and 3.7% increase in improvement in mAP.</p>
 
 <table>
   <thead>
@@ -451,20 +399,6 @@ batch size of 32 with RESNET as backbone show 3.2% improvement in Rank-1 accurac
   </tbody>
 </table>
 
-<p><em><center>Results (mean average precision and Rank-1 accuracy) of Layer-wise similarity on 10% SoccerNet-v3 data and batch size=32</center></em><br /></p>
-
-<p>One of the further areas of exploration is to utilize pose features  which are view invariant such as mentioned in 
-View-Invariant Probabilistic Embedding for Human Pose <a class="citation" href="#DBLP:journals/corr/abs-1912-01001">(Sun et al., 2019)</a>. Also, such positional 
-embedding can be effectively utilized with SIE module of TransReid.</p>
-
-<p>I am grateful to the support of <a href="https://cse.buffalo.edu/~doermann/CV.html">Dr. David Doermann</a> and for providing 
-resources required for this project. This project-work was done with equal contribution from (Abhishek Kumar)[https://www.linkedin.com/in/akumar58/].</p>
-
-<p>Resources:
-<a href="https://www.soccer-net.org/">SoccerNet challenge page</a>
-<a href="https://github.com/SoccerNet/sn-reid">SoccerNet development kit</a>
-<a href="https://github.com/abhinine4/Soccerplayer_Reidentification">Our Github Repo</a>
-<a href="https://github.com/abhinine4/Soccerplayer_Reidentification/blob/main/images/soccer_player_reid_report.pdf">Our report</a></p>
 <ol class="bibliography"><li><span id="zheng2015scalable">Zheng, L., Shen, L., Tian, L., Wang, S., Wang, J., &amp; Tian, Q. (2015). Scalable Person Re-identification: A Benchmark. <i>Computer Vision, IEEE International Conference On</i>.</span></li>
 <li><span id="zhou2019osnet">Zhou, K., Yang, Y., Cavallaro, A., &amp; Xiang, T. (2019). Omni-Scale Feature Learning for Person Re-Identification. <i>ICCV</i>.</span></li>
 <li><span id="https://doi.org/10.48550/arxiv.2102.04378">He, S., Luo, H., Wang, P., Wang, F., Li, H., &amp; Jiang, W. (2021). <i>TransReID: Transformer-based Object Re-Identification</i>. arXiv. https://doi.org/10.48550/ARXIV.2102.04378</span></li>
@@ -472,37 +406,5 @@ resources required for this project. This project-work was done with equal contr
 <li><span id="Suh_2018_ECCV">Suh, Y., Wang, J., Tang, S., Mei, T., &amp; Lee, K. M. (2018, September). Part-Aligned Bilinear Representations for Person Re-Identification. <i>Proceedings of the European Conference on Computer Vision (ECCV)</i>.</span></li>
 <li><span id="DBLP:journals/corr/abs-1812-08008">Cao, Z., Hidalgo, G., Simon, T., Wei, S.-E., &amp; Sheikh, Y. (2018). OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity
                Fields. <i>CoRR</i>, <i>abs/1812.08008</i>. http://arxiv.org/abs/1812.08008</span></li>
-<li><span id="facenet">Schroff, F., Kalenichenko, D., &amp; Philbin, J. (2015). FaceNet: A unified embedding for face recognition and clustering. <i>2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</i>, 815–823. https://doi.org/10.1109/CVPR.2015.7298682</span></li>
-<li><span id="DBLP:journals/corr/abs-1912-01001">Sun, J. J., Zhao, J., Chen, L.-C., Schroff, F., Adam, H., &amp; Liu, T. (2019). View-Invariant Probabilistic Embedding for Human Pose. <i>CoRR</i>, <i>abs/1912.01001</i>. http://arxiv.org/abs/1912.01001</span></li></ol>
-
-  </div><a class="u-url" href="/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html" hidden></a>
-</article>
-
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">msb&#39;s notes</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">msb&#39;s notes</li></ul>
-      </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/bhosalems"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">bhosalems</span></a></li><li><a href="https://www.twitter.com/ms_bhosale"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">ms_bhosale</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Learn and let learn.</p>
-      </div>
-    </div>
-
-  </div>
-
-</footer>
-</body>
-
-</html>
+<li><span id="facenet">Schroff, F., Kalenichenko, D., &amp; Philbin, J. (2015). FaceNet: A unified embedding for face recognition and clustering. <i>2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</i>, 815–823. https://doi.org/10.1109/CVPR.2015.7298682</span></li></ol>
+:ET
