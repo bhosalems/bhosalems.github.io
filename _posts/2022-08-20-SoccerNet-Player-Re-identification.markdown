@@ -346,7 +346,9 @@ One of the further areas of exploration is to utilize pose features  which are v
 View-Invariant Probabilistic Embedding for Human Pose {% cite DBLP:journals/corr/abs-1912-01001 %}. Also, such positional 
 embedding can be effectively utilized with SIE module of TransReid.
 
-I am grateful to the support of [Dr. David Doermann](https://cse.buffalo.edu/~doermann/CV.html) and for providing 
+Ok, that's it.
+
+Finally, I am grateful to the support of [Dr. David Doermann](https://cse.buffalo.edu/~doermann/CV.html) - for providing 
 resources required for this project. This project-work was done with equal contributions from [Mahesh Bhosale](https://www.linkedin.com/in/maheshsbhosale/) and 
 [Abhishek Kumar](https://www.linkedin.com/in/akumar58/).
 
