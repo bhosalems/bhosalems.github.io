@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="lsbmsb.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="lsbmsb.github.io/" rel="alternate" type="text/html" /><updated>2022-08-22T15:01:50-04:00</updated><id>lsbmsb.github.io/feed.xml</id><title type="html">msb’s notes</title><subtitle>Learn and let learn.</subtitle><entry><title type="html">SoccerNet Player Re-identification</title><link href="lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html" rel="alternate" type="text/html" title="SoccerNet Player Re-identification" /><published>2022-08-20T05:15:00-04:00</published><updated>2022-08-20T05:15:00-04:00</updated><id>lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification</id><content type="html" xml:base="lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html">&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="lsbmsb.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="lsbmsb.github.io/" rel="alternate" type="text/html" /><updated>2022-08-22T15:37:12-04:00</updated><id>lsbmsb.github.io/feed.xml</id><title type="html">msb’s notes</title><subtitle>Learn and let learn.</subtitle><entry><title type="html">SoccerNet Player Re-identification</title><link href="lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html" rel="alternate" type="text/html" title="SoccerNet Player Re-identification" /><published>2022-08-20T05:15:00-04:00</published><updated>2022-08-20T05:15:00-04:00</updated><id>lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification</id><content type="html" xml:base="lsbmsb.github.io/jekyll/update/2022/08/20/SoccerNet-Player-Re-identification.html">&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ [&apos;$&apos;,&apos;$&apos;], [&quot;\\(&quot;,&quot;\\)&quot;] ],
@@ -428,10 +428,11 @@ resources required for this project. This project-work was done with equal contr
 &lt;li&gt;&lt;span id=&quot;facenet&quot;&gt;Schroff, F., Kalenichenko, D., &amp;amp; Philbin, J. (2015). FaceNet: A unified embedding for face recognition and clustering. &lt;i&gt;2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)&lt;/i&gt;, 815–823. https://doi.org/10.1109/CVPR.2015.7298682&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span id=&quot;DBLP:journals/corr/abs-1912-01001&quot;&gt;Sun, J. J., Zhao, J., Chen, L.-C., Schroff, F., Adam, H., &amp;amp; Liu, T. (2019). View-Invariant Probabilistic Embedding for Human Pose. &lt;i&gt;CoRR&lt;/i&gt;, &lt;i&gt;abs/1912.01001&lt;/i&gt;. http://arxiv.org/abs/1912.01001&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = &apos;bhosalems&apos;; // required: replace example with your forum shortname
+    var disqus_shortname = &apos;bhosalems-github-io&apos;; // required: replace example with your forum shortname
 
     /* * * DON&apos;T EDIT BELOW THIS LINE * * */
     (function() {
