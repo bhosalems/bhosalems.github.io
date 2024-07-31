@@ -23,7 +23,7 @@ Helping Dr. Kumari in guiding students in projects and programming assignments i
 #### Teaching Assistant
 ***CSE 4/521 Operating Systems, Spring 22, Fall 22, Fall 23 : Feb 2022 - Dec 2023***
 
-Helping students with Dr. Farshad Ghanei and Dr. Tevfik Kosar in [Pintos Projects](https://wiki.cse.buffalo.edu/services/content/pintos)
+Helping students with Dr. Farshad Ghanei and Dr. Tevfik Kosar in [Pintos Projects](https://en.wikipedia.org/wiki/Pintos)
 
 **Responsibilities:**
 1. Weekly meetings with multiple project groups to assess the progress of the project and solve doubts.
