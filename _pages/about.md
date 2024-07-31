@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: "<span class='subtitle1'>Computer Science PhD student,<br> <a class='university-link' href='https://www.buffalo.edu' target='_blank'>University at Buffalo, The State University of New York</a></span>"
+subtitle: "<span class='subtitle1'> <a class='university-link' href='https://www.buffalo.edu' target='_blank'>Computer Science PhD student,<br> University at Buffalo, The State University of New York</a></span>"
 
 profile:
   align: left
@@ -18,9 +18,9 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I am First year CS PhD student advised by <a href='https://scholar.google.com/citations?hl=en&user=RoGOW9AAAAAJ&view_op=list_works&sortby=pubdate' target='_blank'> Dr. David doermann</a>. Prior to this I completed my Masters in CS, aslo at UB and B.Tech at Walchand college of Engineering, Shivaji University, India. I developed deeplearning models for filesystems at Veritas Technologies LLC, where I was fortunate to be advised by <a href='https://scholar.google.com/citations?hl=en&user=WzjDCkAAAAAJ&view_op=list_works&sortby=pubdate' target='_blank'>Anindya Banerjee</a>.
+I am First year CS PhD student advised by <a href='https://scholar.google.com/citations?hl=en&user=RoGOW9AAAAAJ&view_op=list_works&sortby=pubdate' target='_blank'> Dr. David doermann</a>. Prior to this, I completed my Masters in CS, also at UB, and B.Tech at Walchand College of Engineering, Shivaji University, India. I developed deep-learning models for filesystems at Veritas Technologies LLC, where I was fortunate to be advised by <a href='https://scholar.google.com/citations?hl=en&user=WzjDCkAAAAAJ&view_op=list_works&sortby=pubdate' target='_blank'>Anindya Banerjee</a>.
 
-My current research projects focus on utilizing generetive models to enhance image analysis and interpretation.
+My current research projects focus on utilizing generative models to enhance image analysis and interpretation.
 
 <div class="cv-section">
   <div class="cv-column">
