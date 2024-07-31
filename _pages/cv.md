@@ -5,7 +5,7 @@ title: curriculum-vitae
 nav: true
 nav_order: 5
 cv_pdf: mahesh_bhosale_cv.pdf
-description: 
+description:
 toc:
   sidebar: left
 ---
