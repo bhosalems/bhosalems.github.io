@@ -11,7 +11,7 @@ profile:
   more_info: >
     <p>301B Davis Hall</p>
     <p>UB North Campus</p>
-    <p>Amherst, NY, 14260</p>
+    <p>Amherst, NY, 14260.</p>
 
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
