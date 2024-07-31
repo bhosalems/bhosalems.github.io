@@ -1120,6 +1120,27 @@ swiper-container {
   }
 }
 
+/* Add this to your main stylesheet (e.g., styles.css or main.css) */
+
+.subtitle1 {
+  font-size: 1.5em; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold if desired */
+  line-height: 1.4; /* Adjust the line height for better spacing */
+  color: white; /* Change the color as needed */
+  font-family: monospace
+}
+
+.custom-subtitle a.university-link {
+  color: #0073e6; /* Change the link color as needed */
+  text-decoration: none; /* Remove underline from link */
+  font-family: monospace
+}
+
+.custom-subtitle a.university-link:hover {
+  text-decoration: underline; /* Add underline on hover only for the link */
+}
+
+
 // Ninja Keys
 // for more options, check https://github.com/ssleptsov/ninja-keys?tab=readme-ov-file#css-variables
 ninja-keys {
