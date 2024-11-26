@@ -139,3 +139,23 @@ html[data-theme-setting="light"] {
     display: block;
   }
 }
+
+.abbr-container {
+  display: flex;
+  flex-direction: column; /* Stacks the button and image vertically */
+  align-items: center; /* Centers both button and image horizontally */
+  justify-content: center; /* Ensures vertical alignment in the middle of the parent container */
+  gap: 2px; /* Space between the button and the image */
+}
+
+.abbr-image {
+  height: 100px; /* Adjust the image size */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.badge {
+  display: inline-block; /* Ensures proper spacing and alignment */
+  text-align: center; /* Centers the text inside the button */
+}
+
+
