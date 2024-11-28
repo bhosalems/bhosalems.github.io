@@ -11,7 +11,7 @@ nav_order: 6
 
 #### Teaching Assistant
 
-**_CSE 4/574: Spring 24, Fall 24**
+**\_CSE 4/574: Spring 24, Fall 24**
 
 Helping Dr. Kumari and Dr. Asif Imran in guiding students in projects and programming assignments in CSE 4/574 [Introduction to ML](https://cse.buffalo.edu/~poonamku/)
 
@@ -25,7 +25,7 @@ Helping Dr. Kumari and Dr. Asif Imran in guiding students in projects and progra
 
 #### Teaching Assistant
 
-**_CSE 4/521 Operating Systems, Spring 22, Fall 22, Fall 23**
+**\_CSE 4/521 Operating Systems, Spring 22, Fall 22, Fall 23**
 
 Helping students with Dr. Farshad Ghanei and Dr. Tevfik Kosar in [Pintos Projects](https://en.wikipedia.org/wiki/Pintos)
 
