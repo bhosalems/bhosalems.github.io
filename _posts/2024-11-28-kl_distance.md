@@ -10,6 +10,7 @@ math: true
 ---
 
 ### Distance metrics
+
 In contrastive learning distance metric is used to bring the postive pairs closer and negative pairs farther apart. Distance metric therefore should be chosen carefully. In case of probability distributions we will investigate whether KL divergence is goos metric to use in the loss function. Distance metrics should MUST satify below properties
 
 1. <span style="font-weight: bold;">Non-Negativity</span>: $$D(P, Q) >= 0$$.
@@ -23,12 +24,12 @@ In contrastive learning distance metric is used to bring the postive pairs close
 
 The Kullback–Leibler (KL) divergence between two probability distributions is given by,
 
-
 $$
 D_{KL}(P \| Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
 $$
 
 ##### Tying with Information
+
 In information theory, <span style="font-weight: bold;">information</span> quantifies uncertainty reduction. For an event $$x$$ with probability $$P(x)$$, the information content is:
 
 $$
@@ -47,7 +48,7 @@ $$
 D_{KL}(P \| Q) = \sum_x (P(x) \log P(x) - P(x) \log Q(x))
 $$
 
-- $$D_{KL}(P \| Q)$$ measures how poorly $$Q$$ approximates $$P$$. 
+- $$D_{KL}(P \| Q)$$ measures how poorly $$Q$$ approximates $$P$$.
 - High divergence indicates significant <span style="font-weight: bold;">information mismatch</span>.
 
 Therefore KL diveregence lacks the <span style="font-weight: bold;">geometric</span> intepretation of the distance and violates symmetric and triangle-inequlaity requirement i.e
