@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Distance metric for fairness in vision laguage models
+title: Distance metric for fairness in vision language models
 date: 2024-11-28 19:45:00 +0530
 description: Distance metric for fairness
 tags: kl-diveregence self-learning
