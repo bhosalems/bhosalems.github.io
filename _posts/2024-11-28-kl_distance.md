@@ -1,8 +1,8 @@
 ---
 layout: post
-title: KL divergence can not be Distance metric
+title: Distance metric for fairness in vision laguage models
 date: 2024-11-28 19:45:00 +0530
-description: KL divergence can ot be Distance metric
+description: Distance metric for fiarness
 tags: kl-diveregence self-learning
 categories: technical
 pseudocode: true
