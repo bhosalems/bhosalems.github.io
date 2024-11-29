@@ -2,7 +2,7 @@
 layout: post
 title: Distance metric for fairness in vision laguage models
 date: 2024-11-28 19:45:00 +0530
-description: Distance metric for fiarness
+description: Distance metric for fairness
 tags: kl-diveregence self-learning
 categories: technical
 pseudocode: true
