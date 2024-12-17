@@ -60,62 +60,111 @@ $$
 and for example: If $$D_{KL}(P \| Q)$$ is large but $$D_{KL}(Q \| R)$$ is small, the sum $$D_{KL}(P \| Q) + D_{KL}(Q \| R)$$ might not meaningfully bound $$D_{KL}(P \| R)$$.
 
 ---
+### Section 3: Fairness Background {% cite luo2024fairclip --file 2024-11-28-kl_distance %}
 
-### Section 3: Sinkhorn Distance
+With the labeled data $$\mathcal{D} = \{(x^I_i, x^T_i, y_i, a_i)\}$$, where $$x^I_i \in \mathcal{X}^I$$ is an image, $$x^T_i \in \mathcal{X}^T$$ is a corresponding text, $$y_i \in \mathcal{Y}$$ is a label (e.g., malignant tumor or benign tumor), and $$a_i \in \mathcal{A}$$ is an identity attribute (e.g., gender, race, ethnicity), we employ a vision-language (VL) pre-trained model (e.g., CLIP) $$f$$ with a vision encoder $$f_I$$ and a text encoder $$f_T$$ to generate vision features $$z_I$$ and text features $$z_T$$.
 
+Given a batch of $$N$$ image-text pairs, CLIP produces a similarity matrix $$M \in \mathbb{R}^{N \times N}$$ with $$M_{ij} = z_{I_i}^\top z_{T_j}$$, where each entry represents the cosine similarity between the $$i$$-th image feature and the $$j$$-th text feature. CLIP optimizes a contrastive loss to maximize similarity for the $$N$$ positive pairs and minimize it for the $$N^2 - N$$ negative pairs:
+
+$$
+\min_f - \sum_{i=1}^N \sum_{j=1}^N \delta(i-j) \log\left(\frac{z_{I_i}^\top z_{T_j}}{\|z_{I_i}\|\cdot\|z_{T_j}\|}\right),
+$$
+
+where $$\delta(i-j)=1$$ if $$i=j$$ and $$0$$ otherwise.
+
+For fairness, the model $$f \in \mathcal{F}: \mathcal{X}^I \times \mathcal{X}^T \times \mathcal{A} \xrightarrow[]{\theta} \mathcal{Y}$$ incorporates identity attributes into training. Fairness learning thus seeks to minimize disparities between identity groups while also maintaining high accuracy. Fairness during the pre-training phase can thus be improved by minimizing the disparity between the distributions of $$M$$ the correlation between vision and language features—across different identity groups.
+
+Let $$D_{\{(x^I, x^T, a)\}\mid f}$$ denote the distribution of $$M_{i,i}$$ under model $$f$$, and $$D_{\{(x^I, x^T, a) \mid a=\alpha\}\mid f}$$ be the corresponding distribution restricted to group $$\alpha$$. The fairness objective is:
+
+$$
+\min_f \sum_{\alpha \in A} d\bigl(D_{\{(x^I, x^T, a)\}|f}, D_{\{(x^I, x^T, a)|a=\alpha\}|f}\bigr),
+$$
+
+where $$d$$ is a distance function. Since these true distributions are intractable, we instead use empirical distributions $$D_{B \mid f}$$ and $$D_{B_a \mid f}$$ estimated from a batch $$B$$ and its subgroup batch $$B_a$$. Concretely,
+$$
+D_B  = \sum_{i=1}^{\mid B \mid} p_i \delta_{x_i}
+$$
+and
+$$
+D_{B_a}  = \sum_{i=1}^{\mid B_a \mid} q_i \delta_{y_i}
+$$
+where,
+  - $$x_i$$ are data points in $$D_B$$
+  - $$y_j$$ are data points in $$D_{B_a}$$
+  - $$p_i$$ and $$q_j$$ are probability weights assigned to each data points $$x_i$$ and $$y_j$$
+  - $$\delta_{x_i}$$ and $$\delta_{y_j}$$ are dirac delta functions centered at $$x_i$$ and $$y_j$$ i.e.
+
+    $$
+      \delta_i(x) =
+      \begin{cases} 
+      1, & \text{if } x = x_i, \\
+      0, & \text{otherwise.}
+      \end{cases}
+    $$
+    and
+    $$
+      \delta_j(y) =
+      \begin{cases} 
+      1, & \text{if } y = y_j, \\
+      0, & \text{otherwise.}
+      \end{cases}
+    $$
+
+---
+
+### Section 4: Sinkhorn Distance
 The Sinkhorn Distance is a regularized variant of the Wasserstein Distance, designed for computational efficiency and smoothness. It is defined as:
 
 $$
-W_{\epsilon(D_B, D_{B_a})} = \inf_{\gamma \in \Gamma(D_B, D_{B_a})} \mathbb{E}_{(p, q) \sim \gamma}[c(p, q)] + \epsilon H(\gamma \| \mu \otimes \nu)
+W_{\epsilon(D_B, D_{B_a})} = \inf_{\gamma \in \Gamma(D_B, D_{B_a})} \mathbb{E}_{(x_i, y_j) \sim \gamma}[c(x_i, y_j)] + \epsilon H(\gamma \| \mu \otimes \nu)
 $$
 
 Where:
 
-- $$\Gamma(D_B, D_{B_a})$$: The set of all joint distributions $$\gamma(p, q)$$ such that:
+- $$\Gamma(D_B, D_{B_a})$$: The set of all joint distributions $$\gamma(x_i, y_j)$$ such that:
 
   $$
-    \int \gamma(p, q) dq = D_B(p) \quad \text{first marginal matches } D_B,
+    \sum_{j=1}^{\mid D_{B_a}\mid} \gamma(x_i, y_j)  = p_i \quad \text{first marginal matches } D_B,
   $$
 
   $$
-    \int \gamma(p, q) dp = D_{B_a}(q) \quad \text{second marginal matches } D_{B_a}.
+    \sum_{i=1}^{\mid D_{B}\mid} \gamma(x_i, y_j) = q_j \quad \text{second marginal matches } D_{B_a}.
   $$
 
-- $$c(p, q)$$: The transport cost (e.g., Euclidean distance) between points $$p$$ and $$q$$.
+- $$c(x_i, y_j)$$: The transport cost (e.g., Euclidean distance) between points $$x_i$$ and $$y_j$$.
 - $$\epsilon$$: A regularization parameter controlling the weight of the entropy term.
 - $$H(\gamma \| \mu \otimes \nu)$$: The relative entropy between $$\gamma$$ and the product measure $$\mu \otimes \nu$$.
 
-##### 3.1. Key Components
+---
+
+##### 4.1. Key Components
 
 ###### Joint Distribution $$\gamma$$
 
-- $$\gamma(p, q)$$ represents a joint probability distribution over $$p$$ and $$q$$, where:
-  - $$p$$ is sampled from $$D_B$$ (general batch distribution).
-  - $$q$$ is sampled from $$D_{B_a}$$ (subgroup-specific distribution).
-- **Marginal Constraints**:
-  - The first marginal of $$\gamma$$ is $$D_B$$.
-  - The second marginal of $$\gamma$$ is $$D_{B_a}$$.
+- $$\gamma(x_i, y_j)$$ represents a joint probability distribution over $$i$$ and $$j$$, where:
+  - $$x_i$$ is sampled from $$D_B$$ (general batch distribution).
+  - $$y_j$$ is sampled from $$D_{B_a}$$ (subgroup-specific distribution).
+- **Marginal Constraints**: As stated earlier, this is important.
 
-###### **Transport Cost $$\mathbb{E}_{(p, q) \sim \gamma}[c(p, q)]$$**
+###### Transport Cost $$\mathbb{E}_{(x_i, y_j) \sim \gamma}[c(x_i, y_j)]$$
 
 - This term minimizes the cost of moving mass between $$D_B$$ and $$D_{B_a}$$.
 - Alignment is achieved by finding an optimal $$\gamma$$ that connects $$D_B$$ and $$D_{B_a}$$ while minimizing this cost.
 
-###### **Regularization Term $$H(\gamma \| \mu \otimes \nu)$$**
+###### Regularization Term $$H(\gamma \| \mu \otimes \nu)$$
 
 - $$\mu \otimes \nu$$ is a general measure, not necessarily a probability measure.
 - Regularization encourages $$\gamma$$ to have a smoother distribution, influenced by $$\mu \otimes \nu$$.
 
 ---
 
-##### 3.2. Role of $$\gamma$$ in Fairness Learning
+##### 4.2. Role of $$\gamma$$ in Fairness Learning
 
 In fairness learning, the Sinkhorn Distance aligns the distributions $$D_B$$ (general) and $$D_{B_a}$$ (specific to a subgroup). The joint distribution $$\gamma$$:
 
 1. **Ensures Marginal Consistency**:
 
-   - $$ \int \gamma(p, q) dq = D_B(p) $$.
-   - $$ \int \gamma(p, q) dp = D\_{B_a}(q) $$.
+   - $$\sum_{j=1}^{\mid D_{B_a}\mid} \gamma(x_i, y_j)=p_i$$ and  $$\sum_{i=1}^{\mid D_{B}\mid} \gamma(x_i, y_j)=q_j$$
 
 2. **Balances Objectives**:
 
@@ -123,11 +172,11 @@ In fairness learning, the Sinkhorn Distance aligns the distributions $$D_B$$ (ge
    - Smooth the distribution $$\gamma$$ via entropy regularization.
 
 3. **Optimal Transport Plan**:
-   - $$\gamma(p, q)$$ determines how much "mass" is moved from $$p$$ (in $$D_B$$) to $$q$$ (in $$D_{B_a}$$).
+   - $$\gamma(x_i, y_j)$$ determines how much "mass" is moved from $$x_i$$ (in $$D_B$$) to $$y_j$$ (in $$D_{B_a}$$).
 
 ---
 
-##### 3.3. Why Sinkhorn Distance?
+##### 4.3. Why Sinkhorn Distance?
 
 Compared to KL Divergence:
 
@@ -139,5 +188,9 @@ Compared to KL Divergence:
    - Unlike KL Divergence, Sinkhorn Distance satisfies all the properties of a true metric (e.g., triangle inequality).
 
 ---
+## References:<br/>
 
+{% bibliography --file 2024-11-28-kl_distance %}
+
+<br/>
 {% include disqus.html %}
