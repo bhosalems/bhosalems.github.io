@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Two papers submitted to CVPR 2025, including one first author paper on histopathology image synthesis. 
+Two papers submitted to CVPR 2025, including one first author paper on histopathology image synthesis.

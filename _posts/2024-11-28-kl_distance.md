@@ -60,6 +60,7 @@ $$
 and for example: If $$D_{KL}(P \| Q)$$ is large but $$D_{KL}(Q \| R)$$ is small, the sum $$D_{KL}(P \| Q) + D_{KL}(Q \| R)$$ might not meaningfully bound $$D_{KL}(P \| R)$$.
 
 ---
+
 ### Section 3: Fairness Background {% cite luo2024fairclip --file 2024-11-28-kl_distance %}
 
 With the labeled data $$\mathcal{D} = \{(x^I_i, x^T_i, y_i, a_i)\}$$, where $$x^I_i \in \mathcal{X}^I$$ is an image, $$x^T_i \in \mathcal{X}^T$$ is a corresponding text, $$y_i \in \mathcal{Y}$$ is a label (e.g., malignant tumor or benign tumor), and $$a_i \in \mathcal{A}$$ is an identity attribute (e.g., gender, race, ethnicity), we employ a vision-language (VL) pre-trained model (e.g., CLIP) $$f$$ with a vision encoder $$f_I$$ and a text encoder $$f_T$$ to generate vision features $$z_I$$ and text features $$z_T$$.
@@ -81,38 +82,46 @@ $$
 $$
 
 where $$d$$ is a distance function. Since these true distributions are intractable, we instead use empirical distributions $$D_{B \mid f}$$ and $$D_{B_a \mid f}$$ estimated from a batch $$B$$ and its subgroup batch $$B_a$$. Concretely,
+
 $$
 D_B  = \sum_{i=1}^{\mid B \mid} p_i \delta_{x_i}
 $$
+
 and
+
 $$
 D_{B_a}  = \sum_{i=1}^{\mid B_a \mid} q_i \delta_{y_i}
 $$
-where,
-  - $$x_i$$ are data points in $$D_B$$
-  - $$y_j$$ are data points in $$D_{B_a}$$
-  - $$p_i$$ and $$q_j$$ are probability weights assigned to each data points $$x_i$$ and $$y_j$$
-  - $$\delta_{x_i}$$ and $$\delta_{y_j}$$ are dirac delta functions centered at $$x_i$$ and $$y_j$$ i.e.
 
-    $$
-      \delta_i(x) =
-      \begin{cases} 
-      1, & \text{if } x = x_i, \\
-      0, & \text{otherwise.}
-      \end{cases}
-    $$
-    and
-    $$
-      \delta_j(y) =
-      \begin{cases} 
-      1, & \text{if } y = y_j, \\
-      0, & \text{otherwise.}
-      \end{cases}
-    $$
+where,
+
+- $$x_i$$ are data points in $$D_B$$
+- $$y_j$$ are data points in $$D_{B_a}$$
+- $$p_i$$ and $$q_j$$ are probability weights assigned to each data points $$x_i$$ and $$y_j$$
+- $$\delta_{x_i}$$ and $$\delta_{y_j}$$ are dirac delta functions centered at $$x_i$$ and $$y_j$$ i.e.
+
+  $$
+    \delta_i(x) =
+    \begin{cases}
+    1, & \text{if } x = x_i, \\
+    0, & \text{otherwise.}
+    \end{cases}
+  $$
+
+  and
+
+  $$
+    \delta_j(y) =
+    \begin{cases}
+    1, & \text{if } y = y_j, \\
+    0, & \text{otherwise.}
+    \end{cases}
+  $$
 
 ---
 
 ### Section 4: Sinkhorn Distance
+
 The Sinkhorn Distance is a regularized variant of the Wasserstein Distance, designed for computational efficiency and smoothness. It is defined as:
 
 $$
@@ -164,7 +173,7 @@ In fairness learning, the Sinkhorn Distance aligns the distributions $$D_B$$ (ge
 
 1. **Ensures Marginal Consistency**:
 
-   - $$\sum_{j=1}^{\mid D_{B_a}\mid} \gamma(x_i, y_j)=p_i$$ and  $$\sum_{i=1}^{\mid D_{B}\mid} \gamma(x_i, y_j)=q_j$$
+   - $$\sum_{j=1}^{\mid D_{B_a}\mid} \gamma(x_i, y_j)=p_i$$ and $$\sum_{i=1}^{\mid D_{B}\mid} \gamma(x_i, y_j)=q_j$$
 
 2. **Balances Objectives**:
 
@@ -188,6 +197,7 @@ Compared to KL Divergence:
    - Unlike KL Divergence, Sinkhorn Distance satisfies all the properties of a true metric (e.g., triangle inequality).
 
 ---
+
 ## References:<br/>
 
 {% bibliography --file 2024-11-28-kl_distance %}
