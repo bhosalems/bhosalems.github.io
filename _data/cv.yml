@@ -1,97 +1,117 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
-
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: PhD in Computer Science
+      institution: University at Buffalo, The State University of New York, Buffalo, NY, USA
+      logo: assets/img/logos/ub.png
+      year: 2023 – 2027
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - "Advisor: Dr. David Doermann"
+        - Google CS Research Mentorship Scholar 2023.
+
+    - title: MS by Research in Computer Science
+      institution: University at Buffalo, The State University of New York, Buffalo, NY, USA
+      logo: assets/img/logos/ub.png
+      year: 2021 – 2023
       description:
-        - Description 1.
-        - Description 2.
+        - "Advisor: Dr. David Doermann"
+        - "Projects: Person Re-identification in Videos."
+
+    - title: BS in Information Technology
+      institution: Walchand College of Engineering, Shivaji University, Sangli, India
+      logo: assets/img/logos/wce.png
+      year: 2013 – 2017
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Visiting Research Scholar
+      institution: Johns Hopkins University, Baltimore, MD, USA
+      logo: assets/img/logos/jhu.png
+      year: 2026
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - "Research Topics: Multi-video understanding."
+
+    - title: Research Assistant and Lab Manager
+      institution: Institute of Artificial Intelligence and Data Science, University at Buffalo, Buffalo, NY, USA
+      logo: assets/img/logos/ub.png
+      year: 2022 – Present
       description:
-        - Description 1.
-        - Description 2.
+        - "Research Topics: Multi-modal generative AI."
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Software Engineer
+      institution: Veritas Technologies LLC, Pune, India
+      logo: assets/img/logos/veritas.png
+      year: 2017 – 2021
       description:
+        - "Advisor: Anindya Banerjee."
+        - Developed a novel scheduling algorithm on top of LSTM storage and compute resource prediction.
+        - Reduced execution time of resource intensive tasks by 56%.
+        - Bestowed Certificate of Merit — Veritas Illuminate 2020.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    - title: Software Engineer Intern
+      institution: Veritas Technologies LLC, Pune, India
+      logo: assets/img/logos/veritas.png
+      year: 2017
+      description:
+        - Reduced execution time of variants of the 'ls' command by 20% using directory inode read-ahead algorithm.
 
-- title: Open Source Projects
+- title: On-going Research Projects
+  type: nested_list
+  contents:
+    - title: Id-Diff
+      items:
+        - Exploring relationships between intrinsic dimension of data and generative performance of latent diffusion models.
+        - In collaboration with Carez AI and University of Montreal.
+    - title: AI Agents for Pathology
+      items:
+        - Exploring agentic AI for computational pathology that predicts patient survival while remaining clinically interpretable.
+        - In collaboration with NYU Langone Health.
+    - title: Few Step Distillation of Flow Models
+      items:
+        - Tackling the issues of training GAN in distillation.
+        - In collaboration with Meta.
+    - title: Multi-Video Understanding
+      items:
+        - Tackling efficiency and grounding of article generation from multiple videos given a query.
+        - In collaboration with Johns Hopkins University.
+
+- title: Professional Services
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Teaching Assistant
+      year: 2022 – 2025
+      description:
+        - "CSE 573: Computer Vision and Image Processing (Fall 2025)"
+        - "CSE 574: Introduction to Machine Learning (Spring 2024, Fall 2024, Spring 2025)"
+        - "CSE 702: Automated Analysis of Sporting Event Videos (Summer 2022)"
+        - "CSE 521: Introduction to Operating Systems (Spring 2022, Fall 2022, Fall 2023)"
+
+    - title: Conference Reviewer
+      year: 2025 – 2026
+      description:
+        - IEEE International Conference on Computer Vision (ICCV) 2025
+        - Neural Information Processing Systems (NeurIPS) 2026
+        - International Conference on Learning Representations (ICLR) 2026
+        - Conference on Computer Vision and Pattern Recognition (CVPR) 2026
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2023
       items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
+        - Research Mentorship Scholar — Google, USA
+    - year: 2020
       items:
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
+        - Certificate of Merit — Illuminate Annual Technical Conference, Veritas Technologies LLC
+    - year: 2016
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Silver Medal — World Code Sprint, HackerRank
+    - year: 2015
       items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+        - Honorable Mention — ACM-ICPC Amritapuri Regional, Amrita University
+        - Runner Up (out of 75 teams) — Best Project Competition, Dept. of IT, WCE, Sangli
+    - year: 2014
+      items:
+        - Runner Up (600 participants) — Coding Competition, MindSpark, College of Engineering, Pune
+        - DST Inspire Science Camp (Top 1%) — Government of India and IIIT, Pune

@@ -13,6 +13,13 @@
                     </span>
                   </td>
                 </tr>
+                {% if content.logo %}
+                  <tr>
+                    <td style="text-align: center; padding-top: 6px;">
+                      <img src="{{ '/' | append: content.logo | relative_url }}" alt="logo" style="height: 36px; max-width: 65px; object-fit: contain;">
+                    </td>
+                  </tr>
+                {% endif %}
                 {% if content.location %}
                   <tr>
                     <td>

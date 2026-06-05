@@ -18,7 +18,7 @@ group :jekyll_plugins do
   gem 'jekyll-toc'
   gem 'jekyll-twitter-plugin'
   gem 'jemoji'
-  gem 'mini_racer'
+  # gem 'mini_racer'  # requires libv8-node which fails on Windows; execjs uses system Node.js instead
   gem 'unicode_utils'
   gem 'webrick'
   gem 'rexml'
