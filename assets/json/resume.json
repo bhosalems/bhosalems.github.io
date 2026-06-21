@@ -1,15 +1,15 @@
 {
   "basics": {
     "name": "Mahesh Bhosale",
-    "position": "Graduate Research Assistant",
+    "position": "Computer Science PhD Candidate, University at Buffalo",
     "image": "",
-    "email": "",
+    "email": "mbhosale@buffalo.edu",
     "phone": "",
     "url": "https://bhosalems.github.io",
-    "summary": "",
+    "summary": "PhD candidate at the University at Buffalo advised by Dr. David Doermann. Research interests: image/video synthesis via diffusion models, and VQA and fairness issues of Multi-Modal Large Language Models (MLLMs).",
     "location": {
-      "address": "Buffalo, NY, 14226",
-      "postalCode": "14226",
+      "address": "Buffalo, NY, USA",
+      "postalCode": "14260",
       "city": "Buffalo",
       "countryCode": "US",
       "region": "New York"
@@ -34,13 +34,23 @@
   },
   "work": [
     {
-      "name": "Research Foundation for SUNY",
-      "position": "Graduate Research Assistant",
+      "name": "Johns Hopkins University",
+      "position": "Visiting Research Scholar",
+      "location": "Baltimore, MD, USA",
+      "url": "https://www.jhu.edu",
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-01",
+      "summary": "Research topics: multi-video understanding.",
+      "highlights": []
+    },
+    {
+      "name": "Institute of Artificial Intelligence and Data Science, University at Buffalo",
+      "position": "Research Assistant & Lab Manager",
       "location": "Buffalo, NY, USA",
-      "url": "",
+      "url": "https://engineering.buffalo.edu/ai-data-science.html",
       "startDate": "2022-05-01",
       "endDate": "Present",
-      "summary": "Guided by Dr. David Doermann, A2IL lab.",
+      "summary": "Research topics: multi-modal generative AI. Advised by Dr. David Doermann (A2IL Lab).",
       "highlights": []
     },
     {
@@ -48,19 +58,19 @@
       "position": "Software Engineer",
       "location": "Pune, MH, India",
       "url": "",
-      "startDate": "2017-07-01",
-      "endDate": "2021-06-01",
-      "summary": "Developed a novel algorithm for predictive execution of resource-intensive tasks that reduced execution time by 56%. Demonstrated a paper at Veritas's annual technical conference, named IDLEBOT. Bestowed Certificate of Merit 2020. Developed Ransom-ware Detection tool modeling file change log in Veritas Filesystem (VxFS). Presented project in Veritas's annual Hackathon, 2021. Lead effort to start ML for Systems group in Org.",
+      "startDate": "2017-08-01",
+      "endDate": "2021-08-01",
+      "summary": "Advised by Anindya Banerjee. Developed a novel scheduling algorithm on top of LSTM-based storage and compute resource prediction (IDLEBOT), reducing execution time of resource-intensive tasks by 56%. Benchmarked deep-learning-based sequence modeling solutions and built a ransomware-detection tool modeling the file change log in the Veritas Filesystem (VxFS). Bestowed Certificate of Merit, Veritas Illuminate 2020; led the effort to start an ML-for-Systems group in the org.",
       "highlights": []
     },
     {
       "name": "Veritas Technologies LLC",
-      "position": "Engineering Intern",
+      "position": "Software Engineer Intern",
       "location": "Pune, MH, India",
       "url": "",
       "startDate": "2017-01-01",
       "endDate": "2017-06-01",
-      "summary": "Reduced execution time of variants of ‘ls' command by 20% using directory inode read ahead algorithm.",
+      "summary": "Reduced execution time of variants of the 'ls' command by 20% using a directory inode read-ahead algorithm.",
       "highlights": []
     }
   ],
@@ -68,29 +78,29 @@
     {
       "institution": "University at Buffalo, The State University of New York",
       "location": "Buffalo, NY, USA",
-      "url": "",
+      "url": "https://www.buffalo.edu",
       "area": "Computer Science",
-      "studyType": "Doctor of Philosophy",
+      "studyType": "Doctor of Philosophy (PhD)",
       "startDate": "2023-09-01",
-      "endDate": "",
+      "endDate": "2027-05-01",
       "score": "",
       "courses": []
     },
     {
       "institution": "University at Buffalo, The State University of New York",
       "location": "Buffalo, NY, USA",
-      "url": "",
+      "url": "https://www.buffalo.edu",
       "area": "Computer Science",
-      "studyType": "Master of Science",
+      "studyType": "Master of Science (by Research)",
       "startDate": "2021-09-01",
       "endDate": "2023-05-01",
       "score": "3.75",
       "courses": []
     },
     {
-      "institution": "Walchand College of Engineering",
+      "institution": "Walchand College of Engineering, Shivaji University",
       "location": "Sangli, MH, India",
-      "url": "",
+      "url": "https://www.walchandsangli.ac.in",
       "area": "Information Technology",
       "studyType": "Bachelor of Technology",
       "startDate": "2013-06-01",
@@ -99,9 +109,122 @@
       "courses": []
     }
   ],
+  "publications": [
+    {
+      "name": "FairLLaVA: Fairness-Aware Parameter-Efficient Fine-Tuning for Large Vision-Language Assistants",
+      "publisher": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2026",
+      "releaseDate": "2026-06-01",
+      "url": "",
+      "summary": "Mahesh Bhosale, Abdul Wasi*, Shantam Shrivastava*, Shifa Latif, Tianyu Luan, Mingchen Gao, David Doermann, Xuan Gong"
+    },
+    {
+      "name": "Category-wise Structured Radiology Report Generation with Contrastive Decoding",
+      "publisher": "Medical Imaging with Deep Learning (MIDL) 2026 — Oral (top <= 8% of submissions)",
+      "releaseDate": "2026-07-01",
+      "url": "",
+      "summary": "Shantam Shrivastava, Mahesh Bhosale, David Doermann, Mingchen Gao"
+    },
+    {
+      "name": "CRAFT: Critic-Refined Adaptive Key-Frame Targeting for Multimodal Video Question Answering",
+      "publisher": "ACL 2026, MAGMaR Workshop (Multimodal Augmented Generation via Multimodal Retrieval)",
+      "releaseDate": "2026-08-01",
+      "url": "",
+      "summary": "Mahesh Bhosale*, Abdul Wasi*, Vishvesh Trivedi*, Pengyu Yan, Akhil V S S Gorugantu, David Doermann"
+    },
+    {
+      "name": "TRACE: Evidence Grounding-Guided Multi-Video Event Understanding and Claim Generation",
+      "publisher": "ACL 2026, MAGMaR Workshop (Multimodal Augmented Generation via Multimodal Retrieval)",
+      "releaseDate": "2026-08-01",
+      "url": "",
+      "summary": "Pengyu Yan*, Akhil V S S Gorugantu*, Mahesh Bhosale, Abdul Wasi, Vishvesh Trivedi, David Doermann"
+    },
+    {
+      "name": "Variance-Guided Score Regularization for Hallucination Mitigation in Diffusion Models",
+      "publisher": "Under Review, 2026",
+      "releaseDate": "2026-01-01",
+      "url": "",
+      "summary": "Mahesh Bhosale*, Naresh Kumar Devulapalli*, Abdul Wasi, Chau Pham, Vishnu Lokhande, David Doermann"
+    },
+    {
+      "name": "RADI3N: Training-Free Geometric Image Editing via Parametric 3D Control",
+      "publisher": "Under Review, 2026",
+      "releaseDate": "2026-01-01",
+      "url": "",
+      "summary": "Abdul Wasi, Akhil V S S Gorugantu, Mahesh Bhosale, Sauradip Nag, Anjan Dutta, Junsong Yuan, David Doermann"
+    },
+    {
+      "name": "PathDiff: Histopathology Image Synthesis with Unpaired Text and Mask Conditions",
+      "publisher": "International Conference on Computer Vision (ICCV) 2025",
+      "releaseDate": "2025-10-01",
+      "url": "",
+      "summary": "Mahesh Bhosale, Abdul Wasi, Yuanhao Zhai, Yunjie Tian, Samuel Border, Nan Xi, Pinaki Sarder, Junsong Yuan, David Doermann, Xuan Gong"
+    },
+    {
+      "name": "AutoEdit: Automatic Hyperparameter Tuning for Image Editing",
+      "publisher": "Conference on Neural Information Processing Systems (NeurIPS) 2025",
+      "releaseDate": "2025-12-01",
+      "url": "",
+      "summary": "Chau Pham, Quan Dao, Mahesh Bhosale, Yunjie Tian, Dimitris N. Metaxas, David Doermann"
+    },
+    {
+      "name": "ChartReformer: Natural Language-Driven Chart Image Editing",
+      "publisher": "International Conference on Document Analysis and Recognition (ICDAR) 2024",
+      "releaseDate": "2024-10-01",
+      "url": "",
+      "summary": "Pengyu Yan, Mahesh Bhosale, Jay Lal, Bikhyat Adhikari, David Doermann"
+    },
+    {
+      "name": "LineFormer: Rethinking Line Chart Data Extraction as Instance Segmentation",
+      "publisher": "International Conference on Document Analysis and Recognition (ICDAR) 2023",
+      "releaseDate": "2023-08-01",
+      "url": "",
+      "summary": "Jay Lal, Mahesh Bhosale*, Aditya Mitkari*, David Doermann"
+    },
+    {
+      "name": "Player Re-Identification Using Body Part Appearances",
+      "publisher": "arXiv 2023",
+      "releaseDate": "2023-01-01",
+      "url": "",
+      "summary": "Mahesh Bhosale*, Abhishek Kumar*, David Doermann"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Id-Diff",
+      "summary": "Exploring relationships between the intrinsic dimension of data and the generative performance of latent diffusion models. In collaboration with Carez AI and the University of Montreal.",
+      "highlights": [],
+      "startDate": "2025-01-01",
+      "endDate": "",
+      "url": ""
+    },
+    {
+      "name": "AI Agents for Pathology",
+      "summary": "Exploring agentic AI for computational pathology that predicts patient survival while remaining clinically interpretable. In collaboration with NYU Langone Health.",
+      "highlights": [],
+      "startDate": "2025-01-01",
+      "endDate": "",
+      "url": ""
+    },
+    {
+      "name": "Few-Step Distillation of Flow Models",
+      "summary": "Tackling the instability of GAN training when distilling flow-based generative models into few-step samplers. In collaboration with Meta.",
+      "highlights": [],
+      "startDate": "2025-01-01",
+      "endDate": "",
+      "url": ""
+    },
+    {
+      "name": "Multi-Video Understanding",
+      "summary": "Improving the efficiency and grounding of article generation from multiple videos given a query. In collaboration with Johns Hopkins University.",
+      "highlights": [],
+      "startDate": "2025-01-01",
+      "endDate": "",
+      "url": ""
+    }
+  ],
   "awards": [
     {
-      "title": "Google Research Mentorship Program Scholar",
+      "title": "Research Mentorship Program Scholar",
       "date": "2023-02-01",
       "awarder": "Google",
       "url": "https://research.google/outreach/csrmp",
@@ -112,108 +235,42 @@
       "date": "2020-03-01",
       "awarder": "Veritas Technologies LLC",
       "url": "https://www.linkedin.com/posts/mahesh-bhosale-570468aa_veritas-innovation-illuminate2020-activity-6640565103525793792-FHzV?utm_source=linkedin_share&utm_medium=member_desktop_web",
-      "summary": "Presented a paper named 'IDLEBOT - Predictive execution of resource-intensive tasks' in Veritas's annual technical conference."
+      "summary": "Presented a paper titled 'IDLEBOT - Predictive execution of resource-intensive tasks' at Veritas's annual technical conference."
     },
     {
-      "title": "World Code Sprint",
+      "title": "Silver Medal, World Code Sprint",
       "date": "2016-04-01",
-      "awarder": "Hackerrank",
+      "awarder": "HackerRank",
       "url": "https://www.hackerrank.com/results/world-codesprint-april/maheshbhosale?h_r=profile",
-      "summary": "Received silver medal."
+      "summary": "Awarded a silver medal in the World Code Sprint competitive programming contest."
     },
     {
-      "title": "Honorable Mention ACM-ICPC 2015 Regionals",
+      "title": "Honorable Mention, ACM-ICPC Amritapuri Regional",
       "date": "2015-12-01",
-      "awarder": "Association of Computing Machinery and Baylor University",
+      "awarder": "Association for Computing Machinery and Baylor University",
       "url": "",
-      "summary": "Represented Walchand College of Engineering FIRST time in International Collegiate Programming Contest regionals at Amrita University, Coimbatore. It is sponsored by IBM and conducted by ACM in association with Baylor University."
+      "summary": "Represented Walchand College of Engineering for the first time at the International Collegiate Programming Contest regionals at Amrita University, Coimbatore."
     },
     {
-      "title": "Best project competition",
+      "title": "Runner Up, Best Project Competition",
       "date": "2015-01-01",
       "awarder": "Department of Information Technology, WCE, Sangli",
       "url": "",
-      "summary": "Ranked 2nd best project in the department for calculating top 10 Twitter hashtags using Apache Spark, Beautiful Soup, and Twitter4j API for real-time processing and sentiment analysis, with results visualized using Javascript D3."
+      "summary": "Ranked 2nd best project in the department for computing top-10 Twitter hashtags with real-time processing and sentiment analysis using Apache Spark, Beautiful Soup, and the Twitter4j API, visualized with D3.js."
     },
     {
-      "title": "First Runner Up Code-junkie MINDSPARK-2K14",
+      "title": "Runner Up, MindSpark Coding Competition",
       "date": "2014-11-01",
       "awarder": "College of Engineering, Pune",
       "url": "",
-      "summary": "An algorithmic coding competition with over 500 students in teams of 2 from different colleges in India. It had 3 rounds: MCQ, short coding challenge, and long coding challenge."
+      "summary": "An algorithmic coding competition with over 500 students in teams of two from colleges across India, spanning MCQ, short-coding, and long-coding rounds."
     },
     {
-      "title": "DST Inspire Science camp",
-      "date": "2012-01-01",
+      "title": "DST Inspire Science Camp (Top 1%)",
+      "date": "2014-01-01",
       "awarder": "Indian Institute of Information Technology, Pune",
       "url": "https://dst.gov.in/inspire-scheme-innovation-science-pursuit-inspired-research",
-      "summary": "Selected (Top 1%) to participate in Science camp for a week hosted by the Department of Science and Technology, Government of India, and Indian Institute of Information Technology, Pune."
-    }
-  ],
-  "publications": [
-    {
-      "name": "LineFormer: Rethinking Line Chart Data Extraction as Instance Segmentation",
-      "publisher": "International Conference on Document Analysis and Recognition",
-      "releaseDate": "2023-01-01",
-      "url": "",
-      "summary": "Jay Lal, Mahesh Bhosale, Aditya Mitkari, David Doermann"
-    },
-    {
-      "name": "ChartReformer: Natural Language-Driven Chart Image Editing",
-      "publisher": "International Conference on Document Analysis and Recognition",
-      "releaseDate": "2024-01-01",
-      "url": "",
-      "summary": "Pengyu Yan, Mahesh Bhosale, Jay Lal, Bikhyat Adhikari, David Doermann"
-    }
-  ],
-  "projects": [
-    {
-      "name": "Unpaired Text and mask conditioned histopathology image synthesis with diffusion models",
-      "summary": "Using unpaired text reports and label masks to control histopathology image generation.",
-      "highlights": [],
-      "startDate": "2024-01-01",
-      "endDate": "",
-      "url": ""
-    },
-    {
-      "name": "Action spotting",
-      "summary": "Using object specific features and their positional correspondence in a frame for temporally precise action detection.",
-      "highlights": [],
-      "startDate": "2023-01-01",
-      "endDate": "",
-      "url": ""
-    },
-    {
-      "name": "Line-Former",
-      "summary": "Transformer based instance segmentation for document chart data extraction achieving SOTA results across many benchmark chart datasets. Submitted the paper to ICDAR 2023.",
-      "highlights": [],
-      "startDate": "2022-12-01",
-      "endDate": "2023-05-01",
-      "url": ""
-    },
-    {
-      "name": "ROS",
-      "summary": "Implemented BUG2 obstacle avoidance, Camera calibration, Monocular VO, A* path planning, Bays filter for state estimation for ClearPath Husky in ROS.",
-      "highlights": [],
-      "startDate": "2022-01-01",
-      "endDate": "2022-05-01",
-      "url": ""
-    },
-    {
-      "name": "Re-identification SoccerNetv3",
-      "summary": "Soccer player re-identification leveraging two-stream (RESNET + OpenPose sub-network) deep neural network using layer-wise triplet similarity loss. Employed Bilinear pooling to pool features from two streams. Beat SOTA OSNET by 2.1% in MAP and 1.8% in IOU.",
-      "highlights": [],
-      "startDate": "2022-01-01",
-      "endDate": "2022-05-01",
-      "url": ""
-    },
-    {
-      "name": "IDLEBOT",
-      "summary": "Developed command line tool to recommend optimal time slot for execution of resource-intensive tasks for Veritas products using LSTM, FB-Prophet, and ARIMA. The proposed novel 'Weighted time-slot selection algorithm' to select an optimal slot achieved a 56% reduction in exec. time.",
-      "highlights": [],
-      "startDate": "2018-01-01",
-      "endDate": "2020-01-01",
-      "url": ""
+      "summary": "Selected (top 1%) for a week-long science camp hosted by the Department of Science and Technology, Government of India, and IIIT Pune."
     }
   ],
   "skills": [],
