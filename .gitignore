@@ -6,8 +6,14 @@ _site
 .DS_store
 .ruby-version
 .tweet-cache
-Gemfile.lock
 assets/libs/
 node_modules/
 vendor
 .idea
+
+# Claude Code local working dir
+.claude/
+
+# Windows "mark of the web" / downloaded-file metadata (alternate data streams)
+*:Zone.Identifier
+*Zone.Identifier
