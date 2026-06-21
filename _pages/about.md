@@ -97,8 +97,8 @@ My current research focuses on **image/video synthesis via diffusion models**, a
   gap: 12px;
 }
 .exp-logo {
-  height: 44px;
-  width: 44px;
+  height: 88px;
+  width: 88px;
   object-fit: contain;
   flex-shrink: 0;
   margin-top: 2px;
