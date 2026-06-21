@@ -36,3 +36,23 @@
 "arXiv":
   url: https://arxiv.org/
   color: "#B31B1B"
+
+"CVPR 2026":
+  url: https://cvpr.thecvf.com/
+  color: "#1565C0"
+
+"ICCV 2025":
+  url: https://iccv.thecvf.com/
+  color: "#0D47A1"
+
+"NeurIPS 2025":
+  url: https://neurips.cc/
+  color: "#4A148C"
+
+"MIDL 2026":
+  url: https://2026.midl.io/
+  color: "#1B5E20"
+
+"ACL 2026":
+  url: https://2026.aclweb.org/
+  color: "#B71C1C"
