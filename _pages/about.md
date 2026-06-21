@@ -35,7 +35,9 @@ My current research focuses on **image/video synthesis via diffusion models**, a
     <ul class="styled-list experience-list">
       <li>
         <div class="exp-entry">
-          <img src="/assets/img/logos/jhu.png" alt="Johns Hopkins University" class="exp-logo">
+          <div class="exp-logo-wrap">
+            <img src="/assets/img/logos/jhu.png" alt="Johns Hopkins University">
+          </div>
           <div>
             <strong>Visiting Research Scholar</strong> - Johns Hopkins University (June 2026 - August 2026)
             <p>Research Topics: Multi-video understanding.</p>
@@ -44,7 +46,9 @@ My current research focuses on **image/video synthesis via diffusion models**, a
       </li>
       <li>
         <div class="exp-entry">
-          <img src="/assets/img/logos/ub.png" alt="University at Buffalo" class="exp-logo">
+          <div class="exp-logo-wrap">
+            <img src="/assets/img/logos/ub.png" alt="University at Buffalo">
+          </div>
           <div>
             <strong>Research Assistant &amp; Lab Manager</strong> - A2IL Lab, University at Buffalo (2022 - Present)
             <p>Research Topics: Multi-modal generative AI.</p>
@@ -53,7 +57,9 @@ My current research focuses on **image/video synthesis via diffusion models**, a
       </li>
       <li>
         <div class="exp-entry">
-          <img src="/assets/img/logos/veritas.png" alt="Veritas Technologies" class="exp-logo">
+          <div class="exp-logo-wrap">
+            <img src="/assets/img/logos/veritas.png" alt="Veritas Technologies">
+          </div>
           <div>
             <strong>Software Engineer</strong> - Veritas Technologies LLC (2017 - 2021)
             <p>Developed deep-learning models for storage filesystems. Reduced execution time of resource-intensive tasks by 56%.</p>
@@ -93,15 +99,23 @@ My current research focuses on **image/video synthesis via diffusion models**, a
 }
 .exp-entry {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 4px;
 }
-.exp-logo {
-  height: 88px;
-  width: 88px;
-  object-fit: contain;
+.exp-logo-wrap {
+  width: 80px;
+  height: 80px;
   flex-shrink: 0;
-  margin-top: 2px;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.exp-logo-wrap img {
+  max-width: 80px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 </style>
