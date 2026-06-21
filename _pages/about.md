@@ -110,10 +110,15 @@ My current research focuses on **image/video synthesis via diffusion models**, a
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 .exp-logo-wrap img {
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
